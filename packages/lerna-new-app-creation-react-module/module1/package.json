@@ -1,6 +1,6 @@
 {
   "name": "@lerna-new-app-creation-react-module/module1",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "> TODO: description",
   "author": "Arslan Hayat <muhammadarslanhayat@gmail.com>",
   "homepage": "",
@@ -21,7 +21,6 @@
     "tsc": "tsc",
     "cleanbuild": "rm -r node_modules && npm install && tsc"
   },
-  "dependencies": {},
   "peerDependencies": {
     "react": ">= 16.8.0 < 17",
     "react-dom": ">= 16.8.0 < 17"
@@ -29,11 +28,11 @@
   "devDependencies": {
     "@types/jest": "24.0.11",
     "@types/node": "11.13.0",
-    "@types/react-dom": "16.8.3",
-    "tslib": "1.9.3",
     "@types/react": "16.8.10",
-    "typescript": "3.4.1",
+    "@types/react-dom": "16.8.3",
     "react": "16.8.6",
-    "react-dom": "16.8.6"
+    "react-dom": "16.8.6",
+    "tslib": "1.9.3",
+    "typescript": "3.4.1"
   }
 }
