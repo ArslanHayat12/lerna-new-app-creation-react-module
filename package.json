@@ -8,6 +8,7 @@
     "bootstrap": "lerna bootstrap --hoist",
     "start": "lerna run start --stream",
     "tsc": "lerna run tsc --stream",
+    "publish": "lerna run tsc && lerna publish",
     "watch": "lerna run watch --stream"
   },
   "dependencies": {
