@@ -5,6 +5,9 @@ import { List, Spin, Alert, Avatar, Divider, Input } from "antd";
 import { showRecords } from "./constants/";
 import { spinner } from "./assets/styling";
 import useDebounce from "./utils/";
+import { Layout, Menu } from "antd";
+import "antd/dist/antd.css";
+var Header = Layout.Header, Footer = Layout.Footer, Content = Layout.Content;
 var Search = Input.Search;
 export var InfiniteScroll = function () {
     var _a = useState({ hits: [] }), listItems = _a[0], setListItems = _a[1];
@@ -69,14 +72,20 @@ export var InfiniteScroll = function () {
             setIsFetching(true);
         }
     }
-    return (React.createElement(React.Fragment, null,
-        React.createElement("div", { style: { textAlign: "right" } },
-            React.createElement(Search, { placeholder: "search keyword", name: "title", value: query, onSearch: function (value) { return setQuery(value); }, onChange: function (e) { return setQuery(e.target.value); }, enterButton: true, style: { width: 500 } })),
-        React.createElement(Divider, null),
-        React.createElement(List, { bordered: true, dataSource: listItems.hits, renderItem: function (item, i) { return (React.createElement(List.Item, { key: i, extra: React.createElement("img", { width: 27, alt: "logo", src: item.image_url }) },
-                React.createElement(List.Item.Meta, { avatar: React.createElement(Avatar, { src: item.image_url }), title: item.name, description: item.brewers_tips }))); } }),
-        (isFetching || isSearch) && (React.createElement("div", tslib_1.__assign({}, spinner),
-            React.createElement(Spin, null),
-            React.createElement(Alert, { message: "Fetching Records ...", type: "info" })))));
+    return (React.createElement(Layout, { className: "layout" },
+        React.createElement(Header, null,
+            React.createElement("div", { className: "logo" }),
+            React.createElement(Menu, { theme: "dark", mode: "horizontal", defaultSelectedKeys: ["useState"], style: { lineHeight: "64px" } })),
+        React.createElement(Content, { style: { padding: "0 250px" } },
+            React.createElement("div", { style: { background: "#fff", padding: 24, minHeight: 280 } },
+                React.createElement("div", { style: { textAlign: "right" } },
+                    React.createElement(Search, { placeholder: "search keyword", name: "title", value: query, onSearch: function (value) { return setQuery(value); }, onChange: function (e) { return setQuery(e.target.value); }, enterButton: true, style: { width: 500 } })),
+                React.createElement(Divider, null),
+                React.createElement(List, { bordered: true, dataSource: listItems.hits, renderItem: function (item, i) { return (React.createElement(List.Item, { key: i, extra: React.createElement("img", { width: 27, alt: "logo", src: item.image_url }) },
+                        React.createElement(List.Item.Meta, { avatar: React.createElement(Avatar, { src: item.image_url }), title: item.name, description: item.brewers_tips }))); } }),
+                (isFetching || isSearch) && (React.createElement("div", tslib_1.__assign({}, spinner),
+                    React.createElement(Spin, null),
+                    React.createElement(Alert, { message: "Fetching Records ...", type: "info" }))))),
+        React.createElement(Footer, { style: { textAlign: "center" } }, "Searching of Content")));
 };
 //# sourceMappingURL=InfiniteScroll.js.map

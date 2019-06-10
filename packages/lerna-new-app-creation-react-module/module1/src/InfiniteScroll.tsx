@@ -3,8 +3,11 @@ import { fetchData } from "./apis/index";
 import { Tweets } from "./interfaces/interface";
 import { List, Spin, Alert, Avatar, Divider, Input } from "antd";
 import { showRecords } from "./constants/";
-import {spinner} from "./assets/styling";
+import { spinner } from "./assets/styling";
 import useDebounce from "./utils/";
+import { Layout, Menu } from "antd";
+import "antd/dist/antd.css";
+const { Header, Footer, Content } = Layout;
 const Search = Input.Search;
 export const InfiniteScroll = () => {
   const [listItems, setListItems] = useState<Tweets>({ hits: [] });
@@ -35,10 +38,10 @@ export const InfiniteScroll = () => {
     function fetchSearchedListItems(p?: any) {
       setListItems({ hits: [] });
       fetchData(debouncedSearchTerm)
-        .then((result:any) => {
+        .then((result: any) => {
           setListItems({ hits: result.data });
         })
-        .catch((err:any) => {
+        .catch((err: any) => {
           console.log("Error", err);
         });
       setIsFetching(false);
@@ -53,10 +56,10 @@ export const InfiniteScroll = () => {
     function fetchMoreListItems() {
       setTimeout(() => {
         fetchData(null, loadRecords)
-          .then((result:any) => {
-            setListItems({ hits:result.data });
+          .then((result: any) => {
+            setListItems({ hits: result.data });
           })
-          .catch((err:any) => {
+          .catch((err: any) => {
             console.log("Error", err);
           });
         setIsSearch(false);
@@ -77,44 +80,56 @@ export const InfiniteScroll = () => {
   }
 
   return (
-    <>
-      <div style={{ textAlign: "right" }}>
-        <Search
-          placeholder="search keyword"
-          name="title"
-          value={query}
-          onSearch={value => setQuery(value)}
-          onChange={e => setQuery(e.target.value)}
-          enterButton
-          style={{ width: 500 }}
+    <Layout className="layout">
+      <Header>
+        <div className="logo" />
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={["useState"]}
+          style={{ lineHeight: "64px" }}
         />
-      </div>
-      <Divider />
-
-      <List
-        bordered
-        dataSource={listItems.hits}
-        renderItem={(item, i) => (
-          <List.Item
-            key={i}
-            extra={<img width={27} alt="logo" src={item.image_url} />}
-          >
-            <List.Item.Meta
-              avatar={<Avatar src={item.image_url} />}
-              title={item.name}
-              description={item.brewers_tips}
+      </Header>
+      <Content style={{ padding: "0 250px" }}>
+        <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
+          <div style={{ textAlign: "right" }}>
+            <Search
+              placeholder="search keyword"
+              name="title"
+              value={query}
+              onSearch={value => setQuery(value)}
+              onChange={e => setQuery(e.target.value)}
+              enterButton
+              style={{ width: 500 }}
             />
-          </List.Item>
-        )}
-      />
-      {(isFetching || isSearch) && (
-        <div {...spinner}>
-          <Spin />
-          <Alert message="Fetching Records ..." type="info" />
+          </div>
+          <Divider />
+
+          <List
+            bordered
+            dataSource={listItems.hits}
+            renderItem={(item, i) => (
+              <List.Item
+                key={i}
+                extra={<img width={27} alt="logo" src={item.image_url} />}
+              >
+                <List.Item.Meta
+                  avatar={<Avatar src={item.image_url} />}
+                  title={item.name}
+                  description={item.brewers_tips}
+                />
+              </List.Item>
+            )}
+          />
+          {(isFetching || isSearch) && (
+            <div {...spinner}>
+              <Spin />
+              <Alert message="Fetching Records ..." type="info" />
+            </div>
+          )}
         </div>
-      )}
-    </>
+      </Content>
+      <Footer style={{ textAlign: "center" }}>Searching of Content</Footer>
+    </Layout>
   );
 };
-
-
