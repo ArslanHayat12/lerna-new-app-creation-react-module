@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { fetchData } from "./apis/index";
-import { Tweets } from "./interfaces/interface";
+import { Punks } from "./interfaces/interface";
 import { List, Spin, Alert, Avatar, Divider, Input } from "antd";
 import { showRecords } from "./constants/";
-import { spinner } from "./assets/styling";
 import useDebounce from "./utils/";
 import { Layout, Menu } from "antd";
 import "antd/dist/antd.css";
+//import { spinner } from "./assets/styling";
 const { Header, Footer, Content } = Layout;
 const Search = Input.Search;
 export const InfiniteScroll = () => {
-  const [listItems, setListItems] = useState<Tweets>({ hits: [] });
+  const [listItems, setListItems] = useState<Punks>({ hits: [] });
   const [isFetching, setIsFetching] = useState(false);
   const [isSearch, setIsSearch] = useState(false);
   const [query, setQuery] = useState<string>("");
@@ -122,7 +122,7 @@ export const InfiniteScroll = () => {
             )}
           />
           {(isFetching || isSearch) && (
-            <div {...spinner}>
+            <div >
               <Spin />
               <Alert message="Fetching Records ..." type="info" />
             </div>

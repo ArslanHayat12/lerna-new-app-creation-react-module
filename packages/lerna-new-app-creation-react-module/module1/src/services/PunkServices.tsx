@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { List, Spin } from "antd";
-import { Tweets } from "../interfaces/interface";
+import { Punks } from "../interfaces/interface";
 import { fetchData } from "../apis/index";
 
-const TweetService = () => {
-  const [data, setData] = useState<Tweets>({ hits: [], state: "simple" });
+const PunkService = () => {
+  const [data, setData] = useState<Punks>({ hits: [], state: "simple" });
   useEffect(() => {
     fetchData()
       .then((result:any) => {
@@ -23,13 +23,13 @@ const TweetService = () => {
   );
 };
 
-const TweetSearchService = ({ title }: any) => {
-  const [data, setData] = useState<Tweets>({ hits: [], state: "loaded" });
+const PunkSearchService = ({ title }: any) => {
+  const [data, setData] = useState<Punks>({ hits: [], state: "loaded" });
   useEffect(() => {
     setData({ state: "loading" });
     const timer = setTimeout(() => {
       fetchData(title)
-        .then((result: { data: { hits: import("../../../../../../../../../Users/Emumba/Desktop/Lerna React hooks/packages/lerna-new-app-creation-react-module/module1/src/interfaces/interface").TweetsType[] | undefined; }; }) => {
+        .then((result: { data: { hits: any | undefined; }; }) => {
           setData({ hits: result.data.hits, state: "loaded" });
         })
         .catch((err: any) => {
@@ -57,4 +57,4 @@ const TweetSearchService = ({ title }: any) => {
   );
 };
 
-export { TweetService, TweetSearchService };
+export { PunkService, PunkSearchService };
