@@ -108,6 +108,7 @@ export const InfiniteScroll = () => {
           <List
             bordered
             dataSource={listItems.hits}
+            style={{textAlign: "left"}}
             renderItem={(item, i) => (
               <List.Item
                 key={i}
