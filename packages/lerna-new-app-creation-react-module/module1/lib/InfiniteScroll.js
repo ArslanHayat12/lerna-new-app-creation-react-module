@@ -80,7 +80,7 @@ export var InfiniteScroll = function () {
                 React.createElement("div", { style: { textAlign: "right" } },
                     React.createElement(Search, { placeholder: "search keyword", name: "title", value: query, onSearch: function (value) { return setQuery(value); }, onChange: function (e) { return setQuery(e.target.value); }, enterButton: true, style: { width: 500 } })),
                 React.createElement(Divider, null),
-                React.createElement(List, { bordered: true, dataSource: listItems.hits, renderItem: function (item, i) { return (React.createElement(List.Item, { key: i, extra: React.createElement("img", { width: 27, alt: "logo", src: item.image_url }) },
+                React.createElement(List, { bordered: true, dataSource: listItems.hits, style: { textAlign: "left" }, renderItem: function (item, i) { return (React.createElement(List.Item, { key: i, extra: React.createElement("img", { width: 27, alt: "logo", src: item.image_url }) },
                         React.createElement(List.Item.Meta, { avatar: React.createElement(Avatar, { src: item.image_url }), title: item.name, description: item.brewers_tips }))); } }),
                 (isFetching || isSearch) && (React.createElement("div", null,
                     React.createElement(Spin, null),
