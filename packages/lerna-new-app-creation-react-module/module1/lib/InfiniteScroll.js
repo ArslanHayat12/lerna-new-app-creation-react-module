@@ -1,8 +1,9 @@
+import * as tslib_1 from "tslib";
 import React, { useState, useEffect } from "react";
 import { fetchData } from "./apis/index";
 import { List, Spin, Alert, Avatar, Divider, Input } from "antd";
 import { showRecords } from "./constants/";
-import "./styles/styling.css";
+import { spinner } from "./assets/styling";
 import useDebounce from "./utils/";
 var Search = Input.Search;
 export var InfiniteScroll = function () {
@@ -74,7 +75,7 @@ export var InfiniteScroll = function () {
         React.createElement(Divider, null),
         React.createElement(List, { bordered: true, dataSource: listItems.hits, renderItem: function (item, i) { return (React.createElement(List.Item, { key: i, extra: React.createElement("img", { width: 27, alt: "logo", src: item.image_url }) },
                 React.createElement(List.Item.Meta, { avatar: React.createElement(Avatar, { src: item.image_url }), title: item.name, description: item.brewers_tips }))); } }),
-        (isFetching || isSearch) && (React.createElement("div", { className: "spinner" },
+        (isFetching || isSearch) && (React.createElement("div", tslib_1.__assign({}, spinner),
             React.createElement(Spin, null),
             React.createElement(Alert, { message: "Fetching Records ...", type: "info" })))));
 };

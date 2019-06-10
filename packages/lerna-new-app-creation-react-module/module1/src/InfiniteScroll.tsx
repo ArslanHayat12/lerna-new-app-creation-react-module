@@ -3,7 +3,7 @@ import { fetchData } from "./apis/index";
 import { Tweets } from "./interfaces/interface";
 import { List, Spin, Alert, Avatar, Divider, Input } from "antd";
 import { showRecords } from "./constants/";
-import "./styles/styling.css";
+import {spinner} from "./assets/styling";
 import useDebounce from "./utils/";
 const Search = Input.Search;
 export const InfiniteScroll = () => {
@@ -108,7 +108,7 @@ export const InfiniteScroll = () => {
         )}
       />
       {(isFetching || isSearch) && (
-        <div className="spinner">
+        <div {...spinner}>
           <Spin />
           <Alert message="Fetching Records ..." type="info" />
         </div>
