@@ -1,2 +1,2 @@
-export * from "./HelloWorld";
+export * from "./InfiniteScroll";
 //# sourceMappingURL=index.d.ts.map
